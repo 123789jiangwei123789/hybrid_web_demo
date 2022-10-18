@@ -1,0 +1,87 @@
+@import './dimens.scss';
+@import './reset';
+@import './colors.scss';
+.z-index-2 {
+    z-index:2
+}
+.z-index-max {
+    z-index: 9999999;
+}
+// 三角形
+.curet {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: px2rem(8) solid $wordColor;
+    border-left: px2rem(6) solid transparent;
+    border-right: px2rem(6) solid transparent;
+}
+// 覆盖遮罩
+.cover {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0,0.4);
+}
+// 单行超出省略号显示...
+.single-row-text {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+}
+// 二行超出省略号显示
+.two-row-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+.input-container {
+    height: px2rem(48);
+    margin: $marginSize;
+    overflow: hidden;
+    margin-top: $marginSize;
+    background: white;
+    border-bottom: px2rem(1) solid $lineColor;
+    box-sizing: border-box;
+
+    input {
+        width: 100%;
+        height: 100%;
+        font-size: $titleSize;
+        border: 0;  // 去除未选中状态边框
+        outline: none; // 去除选中状态边框
+    }
+}
+//提交按钮
+.page-commit {
+    width: 90%;
+    height: px2rem(46);
+    line-height: px2rem(46);
+    margin-left: 5%;// width:90%,margin-left:为5%在页面居中显示
+    display: block;
+    background-color: rgb(252,218,252);
+    border-radius: px2rem(50);
+    font-size: $titleSize;
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: px2rem(50);
+    -moz-border-radius: px2rem(50);
+    -ms-border-radius: px2rem(50);
+    -o-border-radius: px2rem(50);
+}
+.marquee {
+    height: 100%;
+    font-size: $titleSize;
+    color: $wordColor;
+}
+.iphonex-top {
+    padding-top: 44px !important;
+}
+
+.iphonex-bottom {
+    padding-bottom: 34px;
+}
