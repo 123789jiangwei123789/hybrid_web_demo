@@ -11,7 +11,7 @@
   -->
   <div class="shopping">
     <navigation-bar
-      :pageHeaderTitle="'老公暂存处'"
+      :pageHeaderTitle="'购物车'"
       :isShowBack="false"
     ></navigation-bar>
     <div class="shopping-content">
@@ -45,19 +45,6 @@
               ></number-manager>
             </div>
           </div>
-        </div>
-        <!-- 跑马灯效果 -->
-        <div class="marquee" v-if="!goodsData.length">
-          <marquee
-            direction="down"
-            width="100%"
-            height="100%"
-            behavior="alternate"
-          >
-            <marquee behavior="alternate">
-              这是我为你开发的，呐，送你，嘿嘿嘿
-            </marquee>
-          </marquee>
         </div>
       </div>
       <!-- 商品统计 -->
@@ -96,7 +83,7 @@ export default {
   components: {
     NavigationBar,
     Direct,
-    NumberManager
+    NumberManager,
   },
   data() {
     return {
@@ -106,12 +93,12 @@ export default {
       totalDatas: {
         isAll: false,
         totalPrice: 0,
-        goodsNumber: 0
-      }
+        goodsNumber: 0,
+      },
     };
   },
   activated() {
-    this.goodsData.forEach(item => {
+    this.goodsData.forEach((item) => {
       if (!item.isCheck) {
         this.totalDatas.isAll = false;
       }
@@ -125,7 +112,7 @@ export default {
       const number = $arguments[0];
       this.$store.commit("changeShoppingDataNum", {
         index: index,
-        number: number
+        number: number,
       });
       // 商品数量发生变化，并且处于选中的状态
       if (item.isCheck) {
@@ -140,18 +127,18 @@ export default {
     // 全选
     selectAll() {
       this.totalDatas.isAll = !this.totalDatas.isAll;
-      this.goodsData.forEach(item => (item.isCheck = this.totalDatas.isAll));
+      this.goodsData.forEach((item) => (item.isCheck = this.totalDatas.isAll));
     },
     // 监听选择的购物车数据的变化
     computedGoods() {
       this.totalDatas = {
         isAll: true,
         totalPrice: 0,
-        goodsNumber: 0
+        goodsNumber: 0,
       };
       let price = 0;
       let goodsNum = 0;
-      this.goodsData.forEach(item => {
+      this.goodsData.forEach((item) => {
         if (!item.isCheck) {
           this.totalDatas.isAll = false;
         } else {
@@ -172,8 +159,8 @@ export default {
       return this.totalDatas.isAll
         ? require("@img/check.svg")
         : require("@img/no-check.svg");
-    }
-  }
+    },
+  },
 };
 </script>
 

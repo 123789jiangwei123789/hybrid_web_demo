@@ -1,35 +1,35 @@
 <template>
-  <div class="search" :style="{backgroundColor:bgColor}">
+  <div class="search" :style="{ backgroundColor: bgColor }">
     <img class="search-icon" :src="icon" alt="" srcset="" />
-    <span class="search-title" :style="{color:hintColor}">请输入我要开心下去继续浏览</span>
+    <span class="search-title" :style="{ color: hintColor }">请输入</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'search',
+  name: "search",
   props: {
     // 背景颜色
     bgColor: {
-      default: '#ffffff',
-      type: String
+      default: "#ffffff",
+      type: String,
     },
     // 输入框字体颜色
     hintColor: {
-      default: '#999999',
-      type: String
+      default: "#999999",
+      type: String,
     },
     // icon图标
     icon: {
-      default: require('@img/search.svg'),
-      type: String
-    }
-  }
-}
+      default: require("@img/search.svg"),
+      type: String,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@css/style.scss';
+@import "@css/style.scss";
 .search {
   background-color: white;
   width: 100%;

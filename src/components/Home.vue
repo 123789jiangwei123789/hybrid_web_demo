@@ -18,7 +18,7 @@
     <div class="home-content">
       <!-- 轮播 -->
       <my-swiper
-        :swiperImgs="swiperData.map(item => item.icon)"
+        :swiperImgs="swiperData.map((item) => item.icon)"
         :height="height"
       ></my-swiper>
       <!-- 活动 -->
@@ -65,7 +65,7 @@ export default {
     Seconds,
     Goods,
     NavigationBar,
-    Search
+    Search,
   },
   data() {
     return {
@@ -82,9 +82,9 @@ export default {
           search: {
             bgColor: "#ffffff",
             hintColor: "#999999",
-            icon: require("@img/search.svg")
+            icon: require("@img/search.svg"),
           },
-          rightIcon: require("@img/message-white.svg")
+          rightIcon: require("@img/message-white.svg"),
         },
         // 高亮显示下的插槽样式
         highlight: {
@@ -92,22 +92,22 @@ export default {
           search: {
             bgColor: "#ffffff",
             hintColor: "#999999",
-            icon: require("@img/search.svg")
+            icon: require("@img/search.svg"),
           },
-          rightIcon: require("@img/message-white.svg")
-        }
+          rightIcon: require("@img/message-white.svg"),
+        },
       },
       // 当前插槽的样式
       navBarCurrentSlotStyle: {},
       // 顶部样式
       navBarStyle: {
         backgroundColor: "",
-        position: "fixed"
+        position: "fixed",
       },
       // 锚点值
       MAX_SCROLL_VALUE: 160,
       // 页面滚动距离
-      scrollTopValue: -1
+      scrollTopValue: -1,
     };
   },
   activated() {
@@ -148,97 +148,12 @@ export default {
         .all([
           this.$http.get("/swiper"),
           this.$http.get("/activitys"),
-          this.$http.get("/seconds")
+          this.$http.get("/seconds"),
         ])
         .then(
           this.$http.spread((swiperData, activityData, secondsData) => {
             this.activityData = activityData.list;
-            this.swiperData = [
-              {
-                id: "20",
-                icon: require("@img/20.jpg")
-              },
-              {
-                id: "2",
-                icon: require("@img/2.jpg")
-              },
-              {
-                id: "3",
-                icon: require("@img/3.jpg")
-              },
-              {
-                id: "4",
-                icon: require("@img/4.jpg")
-              },
-              {
-                id: "5",
-                icon: require("@img/5.jpg")
-              },
-              {
-                id: "6",
-                icon: require("@img/6.jpg")
-              },
-              {
-                id: "6",
-                icon: require("@img/6.jpg")
-              },
-              {
-                id: "7",
-                icon: require("@img/7.jpg")
-              },
-              {
-                id: "8",
-                icon: require("@img/8.jpg")
-              },
-              {
-                id: "9",
-                icon: require("@img/9.jpg")
-              },
-              {
-                id: "10",
-                icon: require("@img/10.jpg")
-              },
-              {
-                id: "11",
-                icon: require("@img/11.jpg")
-              },
-              {
-                id: "12",
-                icon: require("@img/12.jpg")
-              },
-              {
-                id: "13",
-                icon: require("@img/13.jpg")
-              },
-              {
-                id: "14",
-                icon: require("@img/14.jpg")
-              },
-              {
-                id: "15",
-                icon: require("@img/15.jpg")
-              },
-              {
-                id: "16",
-                icon: require("@img/16.jpg")
-              },
-              {
-                id: "17",
-                icon: require("@img/17.jpg")
-              },
-              {
-                id: "18",
-                icon: require("@img/18.jpg")
-              },
-              {
-                id: "19",
-                icon: require("@img/19.jpg")
-              },
-              {
-                id: "1",
-                icon: require("@img/1.jpg")
-              }
-            ];
+            this.swiperData = swiperData.list;
             this.secondsData = secondsData.list;
           })
         );
@@ -251,8 +166,8 @@ export default {
     //   this.activityData = res[1].list
     //   this.swiperData = res[0].list
     // }
-    onLeftBack() {}
-  }
+    onLeftBack() {},
+  },
 };
 </script>
 

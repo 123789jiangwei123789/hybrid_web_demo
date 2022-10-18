@@ -1,24 +1,32 @@
 <template>
   <div class="my">
-    <navigation-bar :pageHeaderTitle="'杜沂琳小窝'" :isShowBack="false"></navigation-bar>
+    <navigation-bar
+      :pageHeaderTitle="'我的'"
+      :isShowBack="false"
+    ></navigation-bar>
     <div class="my-content">
       <div class="my-content-header" @click="onLoginClick">
         <img class="my-content-header-avatar" src="@img/13.jpg" />
-        <p class="my-content-header-login">{{$store.state.username ? $store.state.username : '点我/申请'}}</p>
+        <p class="my-content-header-login">
+          {{ $store.state.username ? $store.state.username : "'登录/注册'" }}
+        </p>
       </div>
 
       <div class="my-content-area">
-        <div class="my-content-area-item" v-for="(item,index) in toolsDatas" :key="index">
-          <p class="my-content-area-item-name">{{item}}</p>
-          <img class="my-content-area-item-img" src="@img/right-arrow.svg"/>
+        <div
+          class="my-content-area-item"
+          v-for="(item, index) in toolsDatas"
+          :key="index"
+        >
+          <p class="my-content-area-item-name">{{ item }}</p>
+          <img class="my-content-area-item-img" src="@img/right-arrow.svg" />
         </div>
       </div>
-      <div class="marquee">
-        <marquee class="marquee-color">
-          琳琳，我想对你说，在我这里，你的快乐比对错重要，如果可以的话，我想做那个为你打伞的人，一直保护着你，宠着你
-        </marquee>
-      </div>
-      <div class="my-content-footer page-commit" @click="onLoginOut" v-if="$store.state.username">
+      <div
+        class="my-content-footer page-commit"
+        @click="onLoginOut"
+        v-if="$store.state.username"
+      >
         残忍离开
       </div>
     </div>
@@ -26,60 +34,60 @@
 </template>
 
 <script>
-import NavigationBar from '@c/currency/NavigationBar.vue'
+import NavigationBar from "@c/currency/NavigationBar.vue";
 export default {
-  name: 'my',
+  name: "my",
   components: {
-    NavigationBar
+    NavigationBar,
   },
-  data () {
+  data() {
     return {
-      toolsDatas: ['小可爱', '大宝贝', '更喜欢', '哪个']
-    }
+      toolsDatas: ["全部订单", "我的预约", "应用推荐", "用户福利"],
+    };
   },
   methods: {
-    onLoginClick () {
+    onLoginClick() {
       this.$router.push({
-        name: 'login',
+        name: "login",
         params: {
-          routerType: 'push'
-        }
-      })
+          routerType: "push",
+        },
+      });
     },
     /**
      * 退出登录
      */
-    onLoginOut () {
+    onLoginOut() {
       // 判断当前的项目是运行在 Android 设备还是 IOS 设备中
       if (window.androidJSBridge) {
         // window 下存在 android 注入的对象（androidJSBridge）
-        this.onLoginOutToAndroid()
+        this.onLoginOutToAndroid();
       } else if (window.webkit) {
         // window 下存在 webkit，表示在ios设备运行
-        this.onLoginOutToIOS()
+        this.onLoginOutToIOS();
       }
     },
-    onLoginOutToAndroid () {
-      const result = window.androidJSBridge.logout()
-      this.onLoginOutCallback(result)
+    onLoginOutToAndroid() {
+      const result = window.androidJSBridge.logout();
+      this.onLoginOutCallback(result);
     },
-    onLoginOutToIOS () {
-      window.logoutCallback = this.onLoginOutCallback
-      window.webkit.messageHandlers.logout.postMessage()
+    onLoginOutToIOS() {
+      window.logoutCallback = this.onLoginOutCallback;
+      window.webkit.messageHandlers.logout.postMessage();
     },
-    onLoginOutCallback (result) {
+    onLoginOutCallback(result) {
       if (result) {
-        alert('退出成功！')
+        alert("退出成功！");
       } else {
-        alert('退出失败，请重新操作！')
+        alert("退出失败，请重新操作！");
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@css/style.scss';
+@import "@css/style.scss";
 .my {
   height: 100%;
   width: 100%;
@@ -122,11 +130,6 @@ export default {
         &-img {
           width: px2rem(16);
         }
-      }
-    }
-    .marquee {
-      &-color {
-        margin-top: calc((100% - 81px) / 2);
       }
     }
     &-footer {
